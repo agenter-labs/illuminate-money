@@ -1,0 +1,45 @@
+{
+    "name": "agenter-labs/illuminate-money",
+    "description":"Currency formatting and conversion package for Laravel",
+    "keywords": [
+        "laravel",
+        "money",
+        "currency",
+        "format",
+        "convert"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdulla",
+            "email": "dev@agenter.com",
+            "homepage": "https://agenter.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.8",
+        "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+    "psr-4": {
+            "AgenterLab\\Money\\": "./src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AgenterLab\\Money\\Provider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
