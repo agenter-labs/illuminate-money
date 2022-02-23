@@ -234,6 +234,11 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
     protected static $currencies;
 
     /**
+     * @var string
+     */
+    protected $format;
+
+    /**
      * Create a new instance.
      *
      * @param string $currency
@@ -260,6 +265,7 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
         $this->symbolFirst = (bool) $attributes['symbol_first'];
         $this->decimalMark = (string) $attributes['decimal_mark'];
         $this->thousandsSeparator = (string) $attributes['thousands_separator'];
+        $this->format = (string) ($attributes['format'] ?? 'en-GB|coma|dot');
     }
 
     /**
@@ -442,6 +448,16 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
     }
 
     /**
+     * getFormat.
+     *
+     * @return string
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+    
+    /**
      * Get the instance as an array.
      *
      * @return array
@@ -460,6 +476,7 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
             'thousands_separator' => $this->thousandsSeparator,
             'prefix'              => $this->getPrefix(),
             'suffix'              => $this->getSuffix(),
+            'format'              => $this->getFormat(),
         ]];
     }
 

@@ -6,3 +6,4 @@
 .DS_Store
 composer.phar
 composer.lock
+.phpunit.result.cache
