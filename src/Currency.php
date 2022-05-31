@@ -466,6 +466,16 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
     }
 
     /**
+     * getLocale.
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
      * getFormat.
      *
      * @return string
