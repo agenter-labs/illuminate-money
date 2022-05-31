@@ -704,6 +704,7 @@ return [
         'symbol_first'        => true,
         'decimal_mark'        => '.',
         'thousands_separator' => ',',
+        'locale'              => 'en-IN'
     ],
 
     'IQD' => [

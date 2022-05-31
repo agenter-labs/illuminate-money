@@ -78,4 +78,11 @@ class CurrencyTest extends TestCase
         $this->assertEmpty(Currency::getCurrencies());
         Currency::setCurrencies($currencies);
     }
+
+    public function testFormat()
+    {
+        $this->assertEquals('en-IN|coma|dot', Currency::INR()->getFormat());
+        $this->assertEquals('en-GB|coma|dot', Currency::AED()->getFormat());
+        $this->assertEquals('en-GB|coma|dot', Currency::USD()->getFormat());
+    }
 }

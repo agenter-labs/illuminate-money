@@ -238,6 +238,12 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
      */
     protected $format;
 
+    private static $MAPPINGS = [
+        ' ' => 'space',
+        '.' => 'dot',
+        ',' => 'coma'
+    ];
+
     /**
      * Create a new instance.
      *
@@ -265,7 +271,9 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
         $this->symbolFirst = (bool) $attributes['symbol_first'];
         $this->decimalMark = (string) $attributes['decimal_mark'];
         $this->thousandsSeparator = (string) $attributes['thousands_separator'];
-        $this->format = (string) ($attributes['format'] ?? 'en-GB|coma|dot');
+        $this->locale = (string) ($attributes['locale'] ?? 'en-GB');
+
+        $this->setFormat();
     }
 
     /**
@@ -456,6 +464,20 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
     {
         return $this->format;
     }
+
+    /**
+     * getFormat.
+     *
+     * @return string
+     */
+    private function setFormat()
+    {
+        $this->format = implode('|', [
+            $this->locale,
+            self::$MAPPINGS[$this->thousandsSeparator] ?? 'coma',
+            self::$MAPPINGS[$this->decimalMark] ?? 'dot'
+        ]);
+    }
     
     /**
      * Get the instance as an array.
@@ -477,6 +499,7 @@ class Currency implements Arrayable, Jsonable, JsonSerializable, Renderable
             'prefix'              => $this->getPrefix(),
             'suffix'              => $this->getSuffix(),
             'format'              => $this->getFormat(),
+            'locale'              => $this->locale,
         ]];
     }
 
